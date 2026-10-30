@@ -80,7 +80,12 @@ this normally restores the exact buffers, splits and cursor position.
 Requires **Node.js 18+** and **herdr 0.9+**.
 
 ```sh
+# from GitHub:
+herdr plugin install e-denny/herdr-continuum
+
+# or from a local checkout (while iterating):
 herdr plugin link ~/Projects/herdr-continuum --enabled
+
 herdr plugin list
 herdr plugin action list --plugin edgar.herdr-continuum
 ```
