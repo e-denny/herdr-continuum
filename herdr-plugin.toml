@@ -1,0 +1,91 @@
+id = "edgar.herdr-continuum"
+name = "Herdr Continuum"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "tmux-resurrect + tmux-continuum for herdr: a snapshot every 5 minutes, then relaunch what was running (nvim sessions, dev servers, TUIs) after a restart or reboot."
+platforms = ["linux", "macos"]
+
+# One-shot boot hook: after herdr has restored the layout, rehydrate the last
+# snapshot and start the detached 5-minute autosave daemon.
+[[startup]]
+command = ["node", "bin/startup.js"]
+
+# --- Actions -----------------------------------------------------------------
+[[actions]]
+id = "save"
+title = "Continuum: save snapshot now"
+contexts = ["global"]
+command = ["node", "bin/save.js"]
+
+[[actions]]
+id = "restore"
+title = "Continuum: restore last snapshot"
+contexts = ["global"]
+command = ["node", "bin/restore.js"]
+
+[[actions]]
+id = "restore-preview"
+title = "Continuum: preview restore (dry run)"
+contexts = ["global"]
+command = ["node", "bin/restore.js", "--dry-run"]
+
+[[actions]]
+id = "list"
+title = "Continuum: list snapshots"
+contexts = ["global"]
+command = ["node", "bin/list.js"]
+
+[[actions]]
+id = "status"
+title = "Continuum: status"
+contexts = ["global"]
+command = ["node", "bin/status.js"]
+
+[[actions]]
+id = "daemon-start"
+title = "Continuum: start autosave daemon"
+contexts = ["global"]
+command = ["node", "bin/daemon-start.js"]
+
+[[actions]]
+id = "daemon-stop"
+title = "Continuum: stop autosave daemon"
+contexts = ["global"]
+command = ["node", "bin/daemon-stop.js"]
+
+# --- Autosave on shape changes ----------------------------------------------
+# The daemon owns the 5-minute timer. These hooks add an immediate, debounced
+# snapshot when the session shape changes (default: at most one per 20s), and
+# restart the daemon if it is ever missing. The first event after a server boot
+# is ignored so a half-restored session cannot overwrite the pre-crash snapshot.
+[[events]]
+on = "workspace.created"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "workspace.closed"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "tab.created"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "tab.closed"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "pane.created"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "pane.closed"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "pane.exited"
+command = ["node", "bin/event.js"]
+
+[[events]]
+on = "pane.agent_detected"
+command = ["node", "bin/event.js"]

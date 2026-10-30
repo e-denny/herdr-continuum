@@ -1,0 +1,23 @@
+{
+  "name": "herdr-continuum",
+  "version": "0.1.0",
+  "description": "tmux-resurrect + tmux-continuum for herdr: periodic snapshots and relaunch of the programs (nvim sessions, dev servers, TUIs) that were running in panes.",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "herdr-continuum-save": "bin/save.js",
+    "herdr-continuum-restore": "bin/restore.js",
+    "herdr-continuum-status": "bin/status.js"
+  },
+  "scripts": {
+    "save": "node bin/save.js",
+    "restore": "node bin/restore.js",
+    "restore:dry": "node bin/restore.js --dry-run",
+    "list": "node bin/list.js",
+    "status": "node bin/status.js"
+  },
+  "keywords": ["herdr", "herdr-plugin", "tmux-resurrect", "tmux-continuum", "session", "restore"]
+}

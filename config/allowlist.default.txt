@@ -1,0 +1,133 @@
+# herdr-continuum — programs that restore may relaunch.
+#
+# One program name per line. Matching is case-insensitive and ignores a path and
+# a trailing .exe, so "nvim", "NVIM" and "/usr/bin/nvim" all match.
+# Lines starting with # are comments; a line containing only * means "relaunch
+# everything" (aggressive — one-shot commands get re-run too).
+#
+# Editors are handled specially: when an nvim/vim pane can be restored with
+# `nvim -S <session file>` the plugin does that, whether or not nvim appears
+# below. Agents (pi, claude, codex, …) are resumed by herdr itself and are not
+# listed here.
+#
+# ssh/mosh are intentionally absent: reconnecting remote sessions unattended is
+# usually not what you want after a reboot. Add them back if it is.
+
+# --- editors / pagers ---
+vim
+nvim
+vi
+nano
+emacs
+hx
+helix
+kak
+less
+more
+most
+tail
+lesspipe
+bat
+batcat
+
+# --- file managers / TUIs ---
+yazi
+ranger
+nnn
+mc
+vifm
+lazygit
+lazydocker
+k9s
+btop
+bpytop
+htop
+top
+atop
+iotop
+nvtop
+watch
+ctop
+glances
+tmux
+
+# --- runtimes / REPLs ---
+node
+deno
+bun
+python
+python3
+ipython
+ipython3
+irb
+ruby
+php
+lua
+luajit
+julia
+R
+guile
+sbcl
+clisp
+
+# --- dev servers / watchers / task runners ---
+npm
+npx
+pnpm
+yarn
+vite
+next
+nuxt
+nodemon
+webpack
+gulp
+grunt
+turbo
+tsc
+tsx
+esbuild
+uvicorn
+gunicorn
+flask
+rails
+php-fpm
+air
+dlv
+
+# --- build / language tooling ---
+make
+cmake
+cargo
+rustc
+go
+gradle
+mvn
+dotnet
+stack
+cabal
+
+# --- database / infra clients ---
+psql
+mysql
+mariadb
+redis-cli
+mongosh
+mongo
+sqlite3
+clickhouse-client
+influx
+docker
+podman
+kubectl
+helm
+minikube
+terraform
+ansible
+
+# --- misc long-lived CLIs ---
+tailscale
+syncthing
+rclone
+ffmpeg
+mpv
+cava
